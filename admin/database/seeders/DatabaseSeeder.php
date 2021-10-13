@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('ok00'),
             'current_team_id' => 1
         ]);
+        DB::table('users')->insert([
+            'name'     => 'Admin',
+            'email'    => 'myshop@gmail.com',
+            'password' => bcrypt('admin'),
+            'current_team_id' => 1
+        ]);
         DB::table('teams')->insert([
             'user_id'  => 1,
             'name'    => 'Shoes Store',

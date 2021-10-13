@@ -10,4 +10,9 @@ class Variants extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function product()
+    {
+        return $this->hasMany(Products::class);
+    }
 }

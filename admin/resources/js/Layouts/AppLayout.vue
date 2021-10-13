@@ -23,7 +23,10 @@
                                     Dashboard
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('products')" :active="route().current('products')">
-                                    Products
+                                    Productos
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('categories')" :active="route().current('categories')">
+                                    Categorias
                                 </jet-nav-link>
                             </div>
                         </div>
