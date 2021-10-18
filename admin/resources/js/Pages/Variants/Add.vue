@@ -2,7 +2,7 @@
     <div>
         <jet-dialog-modal :show="showModal" @close="closeModal">
             <template #title>
-                Nueva Categoría
+                Nueva Variante
             </template>
 
             <template #content>
@@ -27,6 +27,19 @@
                                       :class="[$page.props.errors.description ? 'border border-red-300' : 'border border-gray-200', 'block w-full bg-gray-100 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']"
                                       name="description" rows="5" cols="50"></textarea>
                             <div class="text-red-500" v-if="$page.props.errors.description">{{ $page.props.errors.description }}</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-2 mt-6">
+                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <jet-label for="product" value="Producto" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"/>
+                            <jet-input
+                                id="product"
+                                type="number"
+                                :class="[$page.props.errors.product ? 'border border-red-300' : 'border border-gray-200', 'block w-full bg-gray-100 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']"
+                                v-model="form.product"
+                                autocomplete="off"
+                            />
+                            <div class="text-red-500" v-if="$page.props.errors.product">{{ $page.props.errors.product }}</div>
                         </div>
                     </div>
                 </form>
@@ -71,7 +84,8 @@ export default {
         return {
             form: this.$inertia.form({
                 name: '',
-                description: ''
+                description: '',
+                product: ''
             }),
         }
     },
@@ -86,7 +100,7 @@ export default {
             this.$emit('closeModal')
         },
         proceedToSave(){
-            this.form.post(route('category.add'), {
+            this.form.post(route('variant.add'), {
                 preserveScroll: true,
                 onSuccess: () => this.closeModal()
             })

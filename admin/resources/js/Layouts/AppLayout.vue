@@ -28,6 +28,9 @@
                                 <jet-nav-link :href="route('categories')" :active="route().current('categories')">
                                     Categorias
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('variants')" :active="route().current('variants')">
+                                    Variantes
+                                </jet-nav-link>
                             </div>
                         </div>
 

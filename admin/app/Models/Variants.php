@@ -13,6 +13,9 @@ class Variants extends Model
 
     public function product()
     {
-        return $this->hasMany(Products::class);
+        /**
+         * Aqui no supe que relación colocar
+         */
+        return $this->belongsTo(Products::class);
     }
 }

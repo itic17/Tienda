@@ -2,11 +2,11 @@
     <div>
         <jet-dialog-modal :show="showConfirm" @close="closeConfirm">
             <template #title>
-                Eliminar Categoria
+                Eliminar Variante
             </template>
 
             <template #content>
-                ¿Estas seguro que quieres eliminar el la categoria <strong>{{category.name}}</strong>?
+                ¿Estas seguro que quieres eliminar la variente <strong>{{variant.name}}</strong>?
             </template>
 
             <template #footer>
@@ -48,7 +48,7 @@ export default {
         }
     },
     props: {
-        category: {
+        variant: {
             type: Object,
             required: true
         }
@@ -59,8 +59,8 @@ export default {
             this.$emit('closeConfirm')
         },
         proceedToDelete(){
-            this.form.post(route('category.delete', {
-                category: this.category.id
+            this.form.post(route('variant.delete', {
+                variant: this.variant.id
             }), {
                 preserveScroll: true,
                 onSuccess: () => this.closeConfirm()
@@ -68,7 +68,7 @@ export default {
         }
     },
     watch: {
-        category: function(n, o){
+        variant: function(n, o){
             if( ! isEmpty(n) ){
                 this.showConfirm = true
             }

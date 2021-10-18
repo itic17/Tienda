@@ -3,12 +3,12 @@
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Categorías
+                    Variantes
                 </h2>
                 <button
-                    v-on:click="showModalAddCategory()"
+                    v-on:click="showModalAddVariant()"
                     class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-sm">
-                    Agregar Categoria
+                    Agregar Variante
                 </button>
             </div>
         </template>
@@ -16,21 +16,21 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <table-data
-                        :categories="categories.data"
+                        :variants="variants.data"
                         @delete="deleteCategory"
                         @showEditModal="showEditModalEvent" />
 
                     <div class="p-3">
-                        <pagination class="mt-6" :links="categories.links" />
+                        <pagination class="mt-6" :links="variants.links" />
                     </div>
                 </div>
             </div>
         </div>
 
-        <details-modal :category="Selected" @closeModal="closeModal"/>
-        <delete-action :category="SelectedDelete" @closeConfirm="closeConfirm"/>
-        <edit-action :category="SelectedEdit" @closeModal="closeEditModalEvent" />
-        <add-category :showModal="showModalAdd" @closeModal="closeModalAddCategory" />
+        <details-modal :variant="Selected" @closeModal="closeModal"/>
+        <delete-action :variant="SelectedDelete" @closeConfirm="closeConfirm"/>
+        <edit-action :variant="SelectedEdit" @closeModal="closeEditModalEvent" />
+        <add-variant :showModal="showModalAdd" @closeModal="closeModalAddVariant" />
 
     </app-layout>
 </template>
@@ -43,7 +43,7 @@ import Pagination from '@/Components/Pagination'
 import DeleteAction from './Delete'
 import EditAction from './Edit'
 import JetDropdown from '@/Jetstream/Dropdown'
-import AddCategory from "./Add";
+import AddVariant from "./Add";
 
 export default {
     data() {
@@ -62,14 +62,14 @@ export default {
         DeleteAction,
         EditAction,
         JetDropdown,
-        AddCategory
+        AddVariant
     },
     props: {
-        categories: Object,
+        variants: Object,
     },
     methods: {
-        showDetails(category){
-            this.Selected = category
+        showDetails(variante){
+            this.Selected = variante
         },
         closeModal(){
             this.Selected = {}
@@ -77,19 +77,19 @@ export default {
         closeConfirm(){
             this.SelectedDelete = {}
         },
-        deleteCategory(category){
-            this.SelectedDelete = category
+        deleteCategory(variante){
+            this.SelectedDelete = variante
         },
         closeEditModalEvent(){
             this.SelectedEdit = {}
         },
-        showEditModalEvent(category){
-            this.SelectedEdit = category
+        showEditModalEvent(variante){
+            this.SelectedEdit = variante
         },
-        showModalAddCategory(){
+        showModalAddVariant(){
             this.showModalAdd = true
         },
-        closeModalAddCategory(){
+        closeModalAddVariant(){
             this.showModalAdd = false
         }
     }

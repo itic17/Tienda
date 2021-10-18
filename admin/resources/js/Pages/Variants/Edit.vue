@@ -2,7 +2,7 @@
     <div>
         <jet-dialog-modal :show="showModal" @close="closeModal">
             <template #title>
-                Nueva Categoría
+                Editar Variante
             </template>
 
             <template #content>
@@ -13,22 +13,34 @@
                             <jet-input
                                 id="name"
                                 type="text"
-                                :class="[$page.props.errors.name ? 'border border-red-300' : 'border border-gray-200', 'block w-full bg-gray-100 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']"
+                                class="block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 v-model="form.name"
                                 autocomplete="off"
                             />
-                            <div class="text-red-500" v-if="$page.props.errors.name">{{ $page.props.errors.name }}</div>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <jet-label for="description" value="Description" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"/>
-                            <textarea v-model="form.description"
-                                      :class="[$page.props.errors.description ? 'border border-red-300' : 'border border-gray-200', 'block w-full bg-gray-100 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']"
-                                      name="description" rows="5" cols="50"></textarea>
-                            <div class="text-red-500" v-if="$page.props.errors.description">{{ $page.props.errors.description }}</div>
+                            <textarea v-model="form.description" class="block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="description" rows="5" cols="50"></textarea>
+                            <p class="text-gray-600 text-xs italic">Coloque la descripción de la variante</p>
                         </div>
                     </div>
+                    <!--
+                    <div class="flex flex-wrap -mx-3 mb-2 mt-6">
+                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <jet-label for="product" value="Producto" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"/>
+                            <jet-input
+                                id="product"
+                                type="number"
+                                :class="[$page.props.errors.product ? 'border border-red-300' : 'border border-gray-200', 'block w-full bg-gray-100 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']"
+                                v-model="form.product"
+                                autocomplete="off"
+                            />
+                            <div class="text-red-500" v-if="$page.props.errors.product">{{ $page.props.errors.product }}</div>
+                        </div>
+                    </div>
+                    -->
                 </form>
             </template>
 
@@ -43,7 +55,7 @@
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Crear
+                    Guardar Cambios
                 </jet-button>
             </template>
         </jet-dialog-modal>
@@ -69,27 +81,42 @@ export default {
     },
     data() {
         return {
-            form: this.$inertia.form({
-                name: '',
-                description: ''
-            }),
+            form: {},
+            showModal: false
         }
     },
     props: {
-        showModal:{
-            type: Boolean,
+        variant:{
+            type: Object,
             required: true,
         }
     },
     methods: {
         closeModal(){
+            this.showModal = false
             this.$emit('closeModal')
         },
         proceedToSave(){
-            this.form.post(route('category.add'), {
+            this.form.post(route('variant.edit', {
+                variant: this.variant.id
+            }), {
                 preserveScroll: true,
                 onSuccess: () => this.closeModal()
             })
+        }
+    },
+    watch: {
+        variant: function(n, o){
+            if( ! isEmpty(n) ){
+
+                this.form = this.$inertia.form({
+                    name: this.variant.name,
+                    description: this.variant.description
+
+                })
+
+                this.showModal = true
+            }
         }
     }
 }

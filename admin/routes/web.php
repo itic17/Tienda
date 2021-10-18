@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\VariantsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,13 +33,21 @@ Route::middleware(['auth:sanctum', 'verified',])
             return Inertia::render('Dashboard');
         })->name('dashboard');
 
+        /*Productos*/
         Route::get('/products', [ ProductsController::class, 'show' ])->name('products');
         Route::post('/product/remove', [ ProductsController::class, 'delete' ])->name('product.delete');
         Route::post('/product/edit', [ ProductsController::class, 'edit' ])->name('product.edit');
         Route::post('/product/add', [ ProductsController::class, 'add' ])->name('product.add');
 
+        /*Categorias*/
         Route::get('/categories', [ CategoriesController::class, 'show' ])->name('categories');
         Route::post('/categories/remove', [ CategoriesController::class, 'delete' ])->name('category.delete');
-        Route::post('/categories/edit', [ CategoriesController::class, 'edit' ])->name('product.edit');
-        Route::post('/categories/add', [ CategoriesController::class, 'add' ])->name('product.add');
+        Route::post('/categories/edit', [ CategoriesController::class, 'edit' ])->name('category.edit');
+        Route::post('/categories/add', [ CategoriesController::class, 'add' ])->name('category.add');
+
+        /*Variantes*/
+        Route::get('/variants', [ VariantsController::class, 'show' ])->name('variants');
+        Route::post('/variants/remove', [ VariantsController::class, 'delete' ])->name('variant.delete');
+        Route::post('/variants/edit', [ VariantsController::class, 'edit' ])->name('variant.edit');
+        Route::post('/variants/add', [ VariantsController::class, 'add' ])->name('variant.add');
     });
