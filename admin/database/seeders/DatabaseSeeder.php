@@ -22,12 +22,6 @@ class DatabaseSeeder extends Seeder
          * Add the first user
          */
         DB::table('users')->insert([
-            'name'     => 'Luis Mtz',
-            'email'    => 'itic17.luis.martinez@iunis.edu.mx',
-            'password' => bcrypt('ok00'),
-            'current_team_id' => 1
-        ]);
-        DB::table('users')->insert([
             'name'     => 'Admin',
             'email'    => 'myshop@gmail.com',
             'password' => bcrypt('admin'),
@@ -35,7 +29,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('teams')->insert([
             'user_id'  => 1,
-            'name'    => 'Shoes Store',
+            'name'    => 'My Shop',
             'personal_team' => 1
         ]);
 
@@ -47,26 +41,6 @@ class DatabaseSeeder extends Seeder
             'description' => 'Shoes description',
             'created_at' => date('Y-m-d H:i:s')
         ]);
-        DB::table('categories')->insert([
-            'name'    => 'Hats',
-            'description' => 'Hats description',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-        DB::table('categories')->insert([
-            'name'    => 'Tables',
-            'description' => 'Tables description',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-        DB::table('categories')->insert([
-            'name'    => 'Accessories',
-            'description' => 'Accessories description',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-        DB::table('categories')->insert([
-            'name'    => 'Clothing',
-            'description' => 'Clothing description',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
 
         /**
          * Add products
@@ -74,13 +48,13 @@ class DatabaseSeeder extends Seeder
          */
         Products::factory()
             ->has(Providers::factory()->count(1))
-            ->count(150)
+            ->count(32)
             ->create();
 
         /**
          * Add variants
          */
-        Variants::factory()->count(500)->create();
+        Variants::factory()->count(10)->create();
 
 
     }

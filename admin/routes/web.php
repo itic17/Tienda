@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\VariantsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -50,4 +51,10 @@ Route::middleware(['auth:sanctum', 'verified',])
         Route::post('/variants/remove', [ VariantsController::class, 'delete' ])->name('variant.delete');
         Route::post('/variants/edit', [ VariantsController::class, 'edit' ])->name('variant.edit');
         Route::post('/variants/add', [ VariantsController::class, 'add' ])->name('variant.add');
+
+        /*Provedores*/
+        Route::get('/providers', [ ProvidersController::class, 'show' ])->name('providers');
+        Route::post('/providers/remove', [ ProvidersController::class, 'delete' ])->name('provider.delete');
+        Route::post('/providers/edit', [ ProvidersController::class, 'edit' ])->name('provider.edit');
+        Route::post('/providers/add', [ ProvidersController::class, 'add' ])->name('provider.add');
     });

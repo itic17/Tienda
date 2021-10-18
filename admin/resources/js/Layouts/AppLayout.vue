@@ -31,6 +31,9 @@
                                 <jet-nav-link :href="route('variants')" :active="route().current('variants')">
                                     Variantes
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('providers')" :active="route().current('providers')">
+                                    Proveederes
+                                </jet-nav-link>
                             </div>
                         </div>
 
