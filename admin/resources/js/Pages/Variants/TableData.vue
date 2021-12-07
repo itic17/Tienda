@@ -23,6 +23,10 @@
                             <div class="text-sm font-medium text-gray-900">
                                 {{variant.name}}
                             </div>
+                            <!--
+                            <div class="text-sm text-gray-500">
+                                {{variant.product.name}}
+                            </div>}}-->
                         </div>
                     </div>
                 </td>

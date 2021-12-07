@@ -15,6 +15,11 @@
         <!-- Scripts -->
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+
+
+        <!-- SDK MercadoPago.js -->
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia

@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
          */
         DB::table('users')->insert([
             'name'     => 'Admin',
-            'email'    => 'myshop@gmail.com',
+            'email'    => 'shoesstore@gmail.com',
             'password' => bcrypt('admin'),
             'current_team_id' => 1
         ]);
         DB::table('teams')->insert([
             'user_id'  => 1,
-            'name'    => 'My Shop',
+            'name'    => 'Shoes Store',
             'personal_team' => 1
         ]);
 
@@ -37,8 +37,28 @@ class DatabaseSeeder extends Seeder
          * Add Categories
          */
         DB::table('categories')->insert([
-            'name'    => 'Shoes',
-            'description' => 'Shoes description',
+            'name'    => 'Sandalias',
+            'description' => 'Para el y ella',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('categories')->insert([
+            'name'    => 'Deportivos',
+            'description' => 'Para el y ella',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('categories')->insert([
+            'name'    => 'De vestir',
+            'description' => 'Para el y ella',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('categories')->insert([
+            'name'    => 'Niñas',
+            'description' => 'Diferentes tipos de calzado',
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('categories')->insert([
+            'name'    => 'Niños',
+            'description' => 'Diferentes tipos de calzado',
             'created_at' => date('Y-m-d H:i:s')
         ]);
 

@@ -32,7 +32,7 @@
                                     Variantes
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('providers')" :active="route().current('providers')">
-                                    Proveederes
+                                    Proveedores
                                 </jet-nav-link>
                             </div>
                         </div>

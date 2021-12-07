@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FrontProductsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\VariantsController;
@@ -26,7 +27,10 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
+
+Route::get('/front/products', [FrontProductsController::class, 'list'])->name('front.products.list');
+Route::get('/front/products/{hashProduct}', [FrontProductsController::class, 'show'])->name('front.products.show');
 
 Route::middleware(['auth:sanctum', 'verified',])
     ->group(function () {
